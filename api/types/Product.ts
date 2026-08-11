@@ -16,3 +16,8 @@ export type CreateProductResponse = {
   title: string;
   price: number;
 };
+
+export type CreateProductRequest = {
+  title: string;
+  price: number;
+};

@@ -1,4 +1,5 @@
 import { test, expect } from '../../fixtures/testFixtures';
+import { apiProducts } from '../../data/apiProducts';
 
 test.describe('Products API tests', () => {
   test('GET products returns products data', async ({
@@ -27,16 +28,15 @@ test.describe('Products API tests', () => {
     expect(product.price).toBeGreaterThan(0);
   });
 
-test('POST product creates a new product', async ({
-  productsApi,
-}) => {
-  const product = await productsApi.createProductData(
-    'Playwright Test Product',
-    99.99
-  );
+  test('POST product creates a new product', async ({
+    productsApi,
+  }) => {
+    const product = await productsApi.createProductData(
+      apiProducts.newProduct
+    );
 
-  expect(product.id).toBeDefined();
-  expect(product.title).toBe('Playwright Test Product');
-  expect(product.price).toBe(99.99);
-});
+    expect(product.id).toBeDefined();
+    expect(product.title).toBe(apiProducts.newProduct.title);
+    expect(product.price).toBe(apiProducts.newProduct.price);
+  });
 });
