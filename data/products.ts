@@ -1,11 +1,11 @@
 export const products = {
   backpack: {
-    name: 'Sauce Labs Backpack',
+    name: "Sauce Labs Backpack",
     price: 29.99,
   },
 
   bikeLight: {
-    name: 'Sauce Labs Bike Light',
+    name: "Sauce Labs Bike Light",
     price: 9.99,
   },
 };

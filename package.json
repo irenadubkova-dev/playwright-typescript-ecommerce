@@ -11,7 +11,9 @@
     "test:headed": "playwright test --headed",
     "test:ui": "playwright test --ui",
     "report": "playwright show-report",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "keywords": [
     "playwright",
@@ -26,6 +28,7 @@
     "@playwright/test": "^1.62.0",
     "@types/node": "^26.1.1",
     "dotenv": "^17.4.2",
+    "prettier": "^3.9.6",
     "typescript": "^7.0.2"
   }
 }

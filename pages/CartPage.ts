@@ -1,4 +1,4 @@
-import { expect, Locator, Page } from '@playwright/test';
+import { expect, Locator, Page } from "@playwright/test";
 
 export class CartPage {
   private readonly cartItems: Locator;
@@ -6,7 +6,10 @@ export class CartPage {
 
   constructor(private readonly page: Page) {
     this.cartItems = page.locator('[data-test="inventory-item"]');
-    this.checkoutButton = page.getByRole('button', { name: 'Checkout' });
+
+    this.checkoutButton = page.getByRole("button", {
+      name: "Checkout",
+    });
   }
 
   async expectLoaded(): Promise<void> {
@@ -17,23 +20,31 @@ export class CartPage {
     return this.cartItems.count();
   }
 
+  async expectCartItemsCount(expectedCount: number): Promise<void> {
+    await expect(this.cartItems).toHaveCount(expectedCount);
+  }
+
   async expectProductInCart(productName: string): Promise<void> {
-    await expect(
-      this.cartItems.filter({
-        has: this.page.getByText(productName, { exact: true }),
-      })
-    ).toBeVisible();
+    const product = this.cartItems.filter({
+      has: this.page.getByText(productName, {
+        exact: true,
+      }),
+    });
+
+    await expect(product).toBeVisible();
+  }
+
+  async removeProduct(productName: string): Promise<void> {
+    const product = this.cartItems.filter({
+      has: this.page.getByText(productName, {
+        exact: true,
+      }),
+    });
+
+    await product.getByRole("button", { name: "Remove" }).click();
   }
 
   async checkout(): Promise<void> {
     await this.checkoutButton.click();
   }
-
-  async removeProduct(productName: string): Promise<void> {
-  const product = this.cartItems.filter({
-    has: this.page.getByText(productName, { exact: true }),
-  });
-
-  await product.getByRole('button', { name: 'Remove' }).click();
-}
 }

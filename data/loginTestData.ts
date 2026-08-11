@@ -1,4 +1,4 @@
-import { users } from './users';
+import { users } from "./users";
 
 type LoginTestCase = {
   testName: string;
@@ -10,30 +10,30 @@ type LoginTestCase = {
 
 export const loginTestData: LoginTestCase[] = [
   {
-    testName: 'user can log in successfully',
+    testName: "user can log in successfully",
     ...users.standard,
     success: true,
   },
   {
-    testName: 'user cannot log in with invalid username and password',
+    testName: "user cannot log in with invalid username and password",
     ...users.invalid,
-    error: 'Username and password do not match any user in this service',
+    error: "Username and password do not match any user in this service",
   },
   {
-    testName: 'user cannot log in with username only',
+    testName: "user cannot log in with username only",
     username: users.standard.username,
-    password: '',
-    error: 'Password is required',
+    password: "",
+    error: "Password is required",
   },
   {
-    testName: 'user cannot log in with password only',
-    username: '',
+    testName: "user cannot log in with password only",
+    username: "",
     password: users.standard.password,
-    error: 'Username is required',
+    error: "Username is required",
   },
   {
-    testName: 'user cannot log in with valid username and invalid password',
+    testName: "user cannot log in with valid username and invalid password",
     ...users.wrongPassword,
-    error: 'Username and password do not match any user in this service',
+    error: "Username and password do not match any user in this service",
   },
 ];

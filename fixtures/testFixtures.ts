@@ -1,10 +1,10 @@
-import { test as base, expect } from '@playwright/test';
+import { test as base, expect } from "@playwright/test";
 
-import { LoginPage } from '../pages/LoginPage';
-import { ProductsPage } from '../pages/ProductsPage';
-import { CartPage } from '../pages/CartPage';
-import { CheckoutPage } from '../pages/CheckoutPage';
-import { ProductsApi } from '../api/ProductsApi';
+import { ProductsApi } from "../api/ProductsApi";
+import { CartPage } from "../pages/CartPage";
+import { CheckoutPage } from "../pages/CheckoutPage";
+import { LoginPage } from "../pages/LoginPage";
+import { ProductsPage } from "../pages/ProductsPage";
 
 type TestFixtures = {
   loginPage: LoginPage;

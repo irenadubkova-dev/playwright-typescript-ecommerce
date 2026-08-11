@@ -1,10 +1,8 @@
-import { test, expect } from '../../fixtures/testFixtures';
-import { apiProducts } from '../../data/apiProducts';
+import { test, expect } from "../../fixtures/testFixtures";
+import { apiProducts } from "../../data/apiProducts";
 
-test.describe('Products API tests', () => {
-  test('GET products returns products data', async ({
-    productsApi,
-  }) => {
+test.describe("Products API tests", () => {
+  test("GET products returns products data", async ({ productsApi }) => {
     const productsResponse = await productsApi.getProductsData();
 
     expect(productsResponse.products).toBeDefined();
@@ -18,7 +16,7 @@ test.describe('Products API tests', () => {
     expect(firstProduct.price).toBeGreaterThan(0);
   });
 
-  test('GET specific product returns expected product data', async ({
+  test("GET specific product returns expected product data", async ({
     productsApi,
   }) => {
     const product = await productsApi.getProductDataById(1);
@@ -28,12 +26,8 @@ test.describe('Products API tests', () => {
     expect(product.price).toBeGreaterThan(0);
   });
 
-  test('POST product creates a new product', async ({
-    productsApi,
-  }) => {
-    const product = await productsApi.createProductData(
-      apiProducts.newProduct
-    );
+  test("POST product creates a new product", async ({ productsApi }) => {
+    const product = await productsApi.createProductData(apiProducts.newProduct);
 
     expect(product.id).toBeDefined();
     expect(product.title).toBe(apiProducts.newProduct.title);

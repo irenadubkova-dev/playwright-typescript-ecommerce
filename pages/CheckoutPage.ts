@@ -1,4 +1,4 @@
-import { expect, Locator, Page } from '@playwright/test';
+import { expect, Locator, Page } from "@playwright/test";
 
 export class CheckoutPage {
   private readonly firstNameInput: Locator;
@@ -10,19 +10,27 @@ export class CheckoutPage {
   private readonly errorMessage: Locator;
 
   constructor(private readonly page: Page) {
-    this.firstNameInput = page.getByPlaceholder('First Name');
-    this.lastNameInput = page.getByPlaceholder('Last Name');
-    this.postalCodeInput = page.getByPlaceholder('Zip/Postal Code');
-    this.continueButton = page.getByRole('button', { name: 'Continue' });
-    this.finishButton = page.getByRole('button', { name: 'Finish' });
-    this.completeMessage = page.getByText('Thank you for your order!');
+    this.firstNameInput = page.getByPlaceholder("First Name");
+    this.lastNameInput = page.getByPlaceholder("Last Name");
+    this.postalCodeInput = page.getByPlaceholder("Zip/Postal Code");
+
+    this.continueButton = page.getByRole("button", {
+      name: "Continue",
+    });
+
+    this.finishButton = page.getByRole("button", {
+      name: "Finish",
+    });
+
+    this.completeMessage = page.getByText("Thank you for your order!");
+
     this.errorMessage = page.locator('[data-test="error"]');
   }
 
   async fillCustomerDetails(
     firstName: string,
     lastName: string,
-    postalCode: string
+    postalCode: string,
   ): Promise<void> {
     await this.firstNameInput.fill(firstName);
     await this.lastNameInput.fill(lastName);
@@ -41,7 +49,7 @@ export class CheckoutPage {
     await expect(this.completeMessage).toBeVisible();
   }
 
-  async expectErrorMessage(message: string): Promise<void> {
-  await expect(this.errorMessage).toContainText(message);
+  async expectErrorMessage(expectedMessage: string): Promise<void> {
+    await expect(this.errorMessage).toContainText(expectedMessage);
   }
 }

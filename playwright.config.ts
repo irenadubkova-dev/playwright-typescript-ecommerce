@@ -1,10 +1,10 @@
-import { defineConfig, devices } from '@playwright/test';
-import dotenv from 'dotenv';
+import { defineConfig, devices } from "@playwright/test";
+import dotenv from "dotenv";
 
 dotenv.config();
 
 export default defineConfig({
-  testDir: './tests',
+  testDir: "./tests",
 
   fullyParallel: true,
 
@@ -14,18 +14,18 @@ export default defineConfig({
 
   workers: process.env.CI ? 1 : undefined,
 
-  reporter: 'html',
+  reporter: "html",
 
   use: {
     baseURL: process.env.BASE_URL,
-    trace: 'on-first-retry',
-    screenshot: 'only-on-failure',
-    video: 'retain-on-failure',
+    trace: "on-first-retry",
+    screenshot: "only-on-failure",
+    video: "retain-on-failure",
   },
 
   projects: [
     {
-      name: 'api',
+      name: "api",
       testMatch: /api\/.*\.spec\.ts/,
       use: {
         baseURL: process.env.API_BASE_URL,
@@ -33,26 +33,26 @@ export default defineConfig({
     },
 
     {
-      name: 'chromium',
+      name: "chromium",
       testIgnore: /api\/.*\.spec\.ts/,
       use: {
-        ...devices['Desktop Chrome'],
+        ...devices["Desktop Chrome"],
       },
     },
 
     {
-      name: 'firefox',
+      name: "firefox",
       testIgnore: /api\/.*\.spec\.ts/,
       use: {
-        ...devices['Desktop Firefox'],
+        ...devices["Desktop Firefox"],
       },
     },
 
     {
-      name: 'webkit',
+      name: "webkit",
       testIgnore: /api\/.*\.spec\.ts/,
       use: {
-        ...devices['Desktop Safari'],
+        ...devices["Desktop Safari"],
       },
     },
   ],
