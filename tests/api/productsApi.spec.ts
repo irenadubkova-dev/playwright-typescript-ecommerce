@@ -1,49 +1,42 @@
 import { test, expect } from '../../fixtures/testFixtures';
 
 test.describe('Products API tests', () => {
-  test('GET products returns successful response with products', async ({
+  test('GET products returns products data', async ({
     productsApi,
   }) => {
-    const response = await productsApi.getProducts();
+    const productsResponse = await productsApi.getProductsData();
 
-    expect(response.ok()).toBeTruthy();
-    expect(response.status()).toBe(200);
+    expect(productsResponse.products).toBeDefined();
+    expect(productsResponse.products.length).toBeGreaterThan(0);
+    expect(productsResponse.total).toBeGreaterThan(0);
 
-    const body = await response.json();
+    const firstProduct = productsResponse.products[0];
 
-    expect(body.products).toBeDefined();
-    expect(Array.isArray(body.products)).toBeTruthy();
-    expect(body.products.length).toBeGreaterThan(0);
+    expect(firstProduct.id).toBeDefined();
+    expect(firstProduct.title).toBeDefined();
+    expect(firstProduct.price).toBeGreaterThan(0);
   });
 
   test('GET specific product returns expected product data', async ({
     productsApi,
   }) => {
-    const response = await productsApi.getProductById(1);
+    const product = await productsApi.getProductDataById(1);
 
-    expect(response.status()).toBe(200);
-
-    const body = await response.json();
-
-    expect(body.id).toBe(1);
-    expect(body.title).toBeDefined();
-    expect(body.price).toBeGreaterThan(0);
+    expect(product.id).toBe(1);
+    expect(product.title).toBeDefined();
+    expect(product.price).toBeGreaterThan(0);
   });
 
-  test('POST product creates a new product', async ({
-    productsApi,
-  }) => {
-    const response = await productsApi.createProduct(
-      'Playwright Test Product',
-      99.99
-    );
+test('POST product creates a new product', async ({
+  productsApi,
+}) => {
+  const product = await productsApi.createProductData(
+    'Playwright Test Product',
+    99.99
+  );
 
-    expect(response.status()).toBe(201);
-
-    const body = await response.json();
-
-    expect(body.title).toBe('Playwright Test Product');
-    expect(body.price).toBe(99.99);
-    expect(body.id).toBeDefined();
-  });
+  expect(product.id).toBeDefined();
+  expect(product.title).toBe('Playwright Test Product');
+  expect(product.price).toBe(99.99);
+});
 });
