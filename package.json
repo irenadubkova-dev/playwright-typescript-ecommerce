@@ -2,17 +2,17 @@
   "name": "playwright-typescript-ecommerce",
   "version": "1.0.0",
   "description": "E-commerce test automation framework using Playwright and TypeScript",
-"scripts": {
-  "test": "playwright test",
-  "test:chromium": "playwright test --project=chromium",
-  "test:firefox": "playwright test --project=firefox",
-  "test:webkit": "playwright test --project=webkit",
-  "test:api": "playwright test --project=api",
-  "test:headed": "playwright test --headed",
-  "test:ui": "playwright test --ui",
-  "report": "playwright show-report",
-  "typecheck": "tsc --noEmit"
-},
+  "scripts": {
+    "test": "playwright test",
+    "test:chromium": "playwright test --project=chromium",
+    "test:firefox": "playwright test --project=firefox",
+    "test:webkit": "playwright test --project=webkit",
+    "test:api": "playwright test --project=api",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "report": "playwright show-report",
+    "typecheck": "tsc --noEmit"
+  },
   "keywords": [
     "playwright",
     "typescript",
@@ -25,6 +25,7 @@
   "devDependencies": {
     "@playwright/test": "^1.62.0",
     "@types/node": "^26.1.1",
+    "dotenv": "^17.4.2",
     "typescript": "^7.0.2"
   }
 }
