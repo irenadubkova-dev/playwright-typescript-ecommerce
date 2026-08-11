@@ -15,17 +15,20 @@ export default defineConfig({
 
   use: {
     baseURL: 'https://www.saucedemo.com',
-
     trace: 'on-first-retry',
-
     screenshot: 'only-on-failure',
-
     video: 'retain-on-failure',
   },
 
   projects: [
     {
+      name: 'api',
+      testMatch: /api\/.*\.spec\.ts/,
+    },
+
+    {
       name: 'chromium',
+      testIgnore: /api\/.*\.spec\.ts/,
       use: {
         ...devices['Desktop Chrome'],
       },
@@ -33,6 +36,7 @@ export default defineConfig({
 
     {
       name: 'firefox',
+      testIgnore: /api\/.*\.spec\.ts/,
       use: {
         ...devices['Desktop Firefox'],
       },
@@ -40,6 +44,7 @@ export default defineConfig({
 
     {
       name: 'webkit',
+      testIgnore: /api\/.*\.spec\.ts/,
       use: {
         ...devices['Desktop Safari'],
       },
