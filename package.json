@@ -1,0 +1,27 @@
+{
+  "name": "playwright-typescript-ecommerce",
+  "version": "1.0.0",
+  "description": "E-commerce test automation framework using Playwright and TypeScript",
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:debug": "playwright test --debug",
+    "report": "playwright show-report",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "playwright",
+    "typescript",
+    "test-automation",
+    "e2e-testing"
+  ],
+  "author": "Irina Dubkov",
+  "license": "MIT",
+  "type": "commonjs",
+  "devDependencies": {
+    "@playwright/test": "^1.62.0",
+    "@types/node": "^26.1.1",
+    "typescript": "^7.0.2"
+  }
+}
