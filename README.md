@@ -1,5 +1,7 @@
 # Playwright TypeScript E-Commerce Automation
 
+[![Playwright Tests](https://github.com/irenadubkova-dev/playwright-typescript-ecommerce/actions/workflows/playwright.yml/badge.svg)](https://github.com/irenadubkova-dev/playwright-typescript-ecommerce/actions/workflows/playwright.yml)
+
 ## Overview
 
 This project is an end-to-end test automation framework built with Playwright and TypeScript.
