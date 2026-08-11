@@ -4,12 +4,14 @@ import { LoginPage } from '../pages/LoginPage';
 import { ProductsPage } from '../pages/ProductsPage';
 import { CartPage } from '../pages/CartPage';
 import { CheckoutPage } from '../pages/CheckoutPage';
+import { ProductsApi } from '../api/ProductsApi';
 
 type TestFixtures = {
   loginPage: LoginPage;
   productsPage: ProductsPage;
   cartPage: CartPage;
   checkoutPage: CheckoutPage;
+  productsApi: ProductsApi;
 };
 
 export const test = base.extend<TestFixtures>({
@@ -27,6 +29,10 @@ export const test = base.extend<TestFixtures>({
 
   checkoutPage: async ({ page }, use) => {
     await use(new CheckoutPage(page));
+  },
+
+  productsApi: async ({ request }, use) => {
+    await use(new ProductsApi(request));
   },
 });
 

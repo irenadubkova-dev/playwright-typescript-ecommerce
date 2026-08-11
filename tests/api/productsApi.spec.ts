@@ -1,10 +1,10 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from '../../fixtures/testFixtures';
 
 test.describe('Products API tests', () => {
   test('GET products returns successful response with products', async ({
-    request,
+    productsApi,
   }) => {
-    const response = await request.get('/products');
+    const response = await productsApi.getProducts();
 
     expect(response.ok()).toBeTruthy();
     expect(response.status()).toBe(200);
@@ -17,9 +17,9 @@ test.describe('Products API tests', () => {
   });
 
   test('GET specific product returns expected product data', async ({
-    request,
+    productsApi,
   }) => {
-    const response = await request.get('/products/1');
+    const response = await productsApi.getProductById(1);
 
     expect(response.status()).toBe(200);
 
@@ -30,13 +30,13 @@ test.describe('Products API tests', () => {
     expect(body.price).toBeGreaterThan(0);
   });
 
-  test('POST product creates a new product', async ({ request }) => {
-    const response = await request.post('/products/add', {
-      data: {
-        title: 'Playwright Test Product',
-        price: 99.99,
-      },
-    });
+  test('POST product creates a new product', async ({
+    productsApi,
+  }) => {
+    const response = await productsApi.createProduct(
+      'Playwright Test Product',
+      99.99
+    );
 
     expect(response.status()).toBe(201);
 
